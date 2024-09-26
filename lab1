@@ -1,0 +1,113 @@
+import java.util.Scanner;
+public class Data {
+    private int size;
+    private double sum;
+    private double max_num;
+    public Data() {
+        size = 0;
+        sum = 0;
+        max_num = -999999;
+
+    }
+    public void add(int num) {
+        sum += num;
+        if (num > max_num) {
+            max_num = num;
+        }
+        size++;
+    }
+    public double getAverage() {
+        return sum / size;
+    }
+    public double getMaxNum() {
+        return max_num;
+    }
+}
+
+
+
+import java.util.Scanner;
+
+public class Analyzer {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        Data data  = new Data();
+        while (true) {
+            System.out.println("Enter number (Q to quit): ");
+            String input = sc.nextLine();
+            if (input.equals("Q")) {
+                System.out.println("Average = " + data.getAverage());
+                System.out.println("Maximum = " + data.getMaxNum());
+                break;
+            }
+
+
+        }
+
+    }
+}
+
+
+
+public class Temperature {
+    private double temperature;
+    private char unit;
+    public Temperature(double temperature, char unit) {
+        this.temperature = temperature;
+        this.unit = unit;
+    }
+    public Temperature(double temperature) {
+        this.temperature = temperature;
+        this.unit = 'C';
+    }
+    public Temperature(char unit) {
+        this.unit = unit;
+        this.temperature = 0.0;
+    }
+    public Temperature() {
+        this.unit = 'C';
+        this.temperature = 0.0;
+    }
+    public double toCelsius() {
+        if (unit == 'F') {
+            return  5*(temperature -32)/9;
+        }
+        else{
+            return temperature;
+        }
+    }
+    public double toFahrenheit() {
+        if (unit == 'C') {
+            return (9*temperature)/5+32;
+        }
+        else{
+            return temperature;
+        }
+    }
+    public void setTemperature(double temperature) {
+        this.temperature = temperature;
+    }
+    public void setUnit(char unit) {
+        this.unit = unit;
+    }
+    public void setAll(double temperature, char unit) {
+        this.temperature = temperature;
+        this.unit = unit;
+    }
+    public void printTemperature() {
+        System.out.println(temperature);
+        System.out.println(unit);
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Temperature temp1 = new Temperature(25,'F');
+        temp1.setAll(30,'C');
+        temp1.printTemperature();
+    }
+}
+
+
+
+
